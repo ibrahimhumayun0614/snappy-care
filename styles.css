@@ -2026,14 +2026,14 @@ body {
 
 /* Responsive Testimonials */
 @media (max-width: 1024px) {
-    .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .testimonial-card {
+        flex: 0 0 calc(50% - 12px); /* 2 cards per view on tablet */
     }
 }
 
-@media (max-width: 640px) {
-    .testimonials-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 768px) {
+    .testimonial-card {
+        flex: 0 0 calc(100% - 0px); /* 1 card per view on mobile */
     }
 
     .testimonials-title {
