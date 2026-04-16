@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snappy Care - Professional Healthcare Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon_snappycare.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Motion One Library for ultra-smooth animations -->
+    <script src="https://cdn.jsdelivr.net/npm/motion@10.16.2/dist/motion.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="#">
+                        <img src="assets/Snappy_Care.png" alt="Snappy Care" class="logo-default">
+                        <img src="assets/colored logo.svg" alt="Snappy Care" class="logo-sticky">
+                    </a>
+                </div>
+                
+                <nav class="nav">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">
+                                About Us
+                                <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="dropdown-link">Chairman Message</a></li>
+                                <li><a href="#" class="dropdown-link">Our Management</a></li>
+                                <li><a href="#" class="dropdown-link">Career</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">
+                                Specialized Care
+                                <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="dropdown-link">Elderly Care</a></li>
+                                <li><a href="#" class="dropdown-link">Pregnancy Care</a></li>
+                                <li><a href="#" class="dropdown-link">Baby Care</a></li>
+                                <li><a href="#" class="dropdown-link">Physiotherapy Care</a></li>
+                                <li><a href="#" class="dropdown-link">Autism Center</a></li>
+                                <li><a href="#" class="dropdown-link">Doctor on call</a></li>
+                                <li><a href="#" class="dropdown-link">Nursing Care</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">
+                                Medical Care
+                                <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="dropdown-link">IV Therapy @home</a></li>
+                                <li><a href="#" class="dropdown-link">Lab Test @home</a></li>
+                                <li><a href="#" class="dropdown-link">Wound Care</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Contact Us</a>
+                        </li>
+                        <li class="nav-item nav-cta">
+                            <a href="#" class="btn-primary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>Book Appointment</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-cta">
+                    <a href="#" class="btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>Book Appointment</span>
+                    </a>
+                </div>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-video-container">
+            <div class="hero-video-overlay"></div>
+            <video 
+                class="hero-video"
+                src="assets/hero_section.mp4"
+                autoplay
+                muted
+                loop
+                playsinline>
+            </video>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-subtitle">PROFESSIONAL HEALTHCARE SERVICES</span>
+                <h1 class="hero-title">
+                    Quality healthcare<br>
+                    that feels like <span class="highlight">family</span>.
+                </h1>
+                <p class="hero-description">
+                    Snappy Care is dedicated to offering high-quality caregiving services 
+                    that respect the dignity and independence of every patient.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-hero-primary">Schedule Home Visit</a>
+                    <a href="#" class="btn-hero-secondary">Explore More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CSR Collaborations -->
+    <section class="csr">
+        <div class="container">
+            <div class="csr-wrapper">
+                <div class="csr-content">
+                    <h2 class="csr-label">CSR <span>Collaborations</span></h2>
+                    <p class="csr-description">Partnering with leading authorities to deliver excellence in community healthcare.</p>
+                </div>
+                <div class="csr-logos">
+                    <div class="csr-logo">
+                        <img src="assets/dha.svg" alt="DHA">
+                    </div>
+                    <div class="csr-logo">
+                        <img src="assets/Dubai Police.png" alt="Dubai Police">
+                    </div>
+                    <div class="csr-logo">
+                        <img src="assets/cda.svg" alt="CDA">
+                    </div>
+                    <div class="csr-logo">
+                        <img src="assets/Government_of_Dubai_logo.svg" alt="Government of Dubai">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <span class="about-subtitle">ABOUT SNAPPY CARE</span>
+                    <h2 class="about-title">Dedicated to <span class="highlight">exemplary care</span> within our community.</h2>
+                    <p class="about-text">
+                        Established in 2020, Snappy Care is the entity of Saif Belhasa Holding. 
+                        Snappy Care emerged from a profound commitment to delivering exemplary care to our community. 
+                        Recognizing the dual of supporting the younger and older generations, we founded our company to 
+                        address these critical needs comprehensively. 
+                    </p>
+                    <p class="about-text">
+                        Adhering strictly to the guidelines set forth by the World Health Organization (WHO) 
+                        and the Dubai Health Authority (DHA), we ensure the delivery of superior quality cares.
+                    </p>
+                    <div class="about-footer">
+                        <div class="cert-badge">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span>WHO & DHA Certified</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-secondary about-btn">Read More</a>
+                </div>
+                
+                <div class="about-visual">
+                    <div class="collage">
+                        <div class="collage-item large">
+                            <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=800" alt="Happy Elderly Care">
+                        </div>
+                        <div class="collage-item small-top">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600" alt="Caregiver Companionship">
+                        </div>
+                        <div class="collage-item small-bottom">
+                            <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=800" alt="Professional Nursing">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialized Care Section -->
+    <section class="specialized-care" id="care">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">OUR SPECIALIZED CARE</span>
+                <h2 class="section-title">Healthcare solutions tailored<br>to your <span class="highlight">unique needs</span>.</h2>
+                <p class="section-description">
+                    We provide a comprehensive range of professional healthcare services 
+                    delivered with compassion in the comfort of your home.
+                </p>
+                <div class="slider-nav">
+                    <button class="slider-arrow prev-care" aria-label="Previous">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="slider-arrow next-care" aria-label="Next">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="care-slider-container">
+                <div class="care-slider">
+                    <div class="care-slider-track">
+                        <!-- Card 1: Elderly Care -->
+                        <div class="care-card">
+                            <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?auto=format&fit=crop&q=80&w=800" alt="Elderly Care">
+                            <div class="care-info">
+                                <div class="care-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </div>
+                                <h3 class="care-name">Elderly Care</h3>
+                                <p class="care-desc">Providing professional support and heartwarming companionship to ensure safety and comfort for seniors at home.</p>
+                            </div>
+                            <div class="care-overlay"></div>
+                        </div>
+
+                        <!-- Card 2: Pregnancy Care -->
+                        <div class="care-card">
+                            <img src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?auto=format&fit=crop&q=80&w=800" alt="Pregnancy Care">
+                            <div class="care-info">
+                                <div class="care-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </div>
+                                <h3 class="care-name">Pregnancy Care</h3>
+                                <p class="care-desc">Specialized care for expecting mothers, focusing on health monitoring and comfortable prenatal support.</p>
+                            </div>
+                            <div class="care-overlay"></div>
+                        </div>
+
+                        <!-- Card 3: Baby Care -->
+                        <div class="care-card">
+                            <img src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?auto=format&fit=crop&q=80&w=800" alt="Baby Care">
+                            <div class="care-info">
+                                <div class="care-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </div>
+                                <h3 class="care-name">Baby Care</h3>
+                                <p class="care-desc">Expert care for your newborn, helping new parents navigate the first steps of their baby's life with professional guidance.</p>
+                            </div>
+                            <div class="care-overlay"></div>
+                        </div>
+
+                        <!-- Card 4: Physiotherapy Care -->
+                        <div class="care-card">
+                            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=800" alt="Physiotherapy Care">
+                            <div class="care-info">
+                                <div class="care-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </div>
+                                <h3 class="care-name">Physiotherapy Care</h3>
+                                <p class="care-desc">Recover faster with our personalized at-home physiotherapy sessions designed to restore mobility and strength.</p>
+                            </div>
+                            <div class="care-overlay"></div>
+                        </div>
+
+                        <!-- Card 5: Autism Center -->
+                        <div class="care-card">
+                            <img src="https://images.unsplash.com/photo-1502014822147-1aedfb0676e0?auto=format&fit=crop&q=80&w=800" alt="Autism Center">
+                            <div class="care-info">
+                                <div class="care-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </div>
+                                <h3 class="care-name">Autism Center</h3>
+                                <p class="care-desc">Providing behavioral and developmental support for children and adults with autism in a familiar home environment.</p>
+                            </div>
+                            <div class="care-overlay"></div>
+                        </div>
+
+                        <!-- Card 6: Doctor on call -->
+                        <div class="care-card">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800" alt="Doctor on call">
+                            <div class="care-info">
+                                <div class="care-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </div>
+                                <h3 class="care-name">Doctor on call</h3>
+                                <p class="care-desc">Skip the waiting room. Get professional medical advice and prescriptions directly at your location within minutes.</p>
+                            </div>
+                            <div class="care-overlay"></div>
+                        </div>
+
+                        <!-- Card 7: Nursing Care -->
+                        <div class="care-card">
+                            <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=800" alt="Nursing Care">
+                            <div class="care-info">
+                                <div class="care-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </div>
+                                <h3 class="care-name">Nursing Care</h3>
+                                <p class="care-desc">Fully licensed nurses providing wound care, medication management, and clinical supervision at home.</p>
+                            </div>
+                            <div class="care-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <button class="slider-arrow prev" aria-label="Previous slide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    </button>
+                    <button class="slider-arrow next" aria-label="Next slide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose" id="why-choose">
+        <div class="why-choose-background">
+            <img src="assets/ornament-curly.png" alt="" class="ornament-bg">
+        </div>
+        <div class="container">
+            <div class="why-choose-header">
+                <div class="header-left">
+                    <div class="why-subtitle">
+                        <span>WHY CHOOSE US?</span>
+                    </div>
+                    <h2 class="why-title">You're not just a patient, you're<br>someone we care about deeply.</h2>
+                </div>
+
+            </div>
+
+            <div class="why-cards">
+                <!-- Card 1 -->
+                <div class="why-card">
+                    <div class="why-card-icon-wrapper">
+                        <div class="why-card-icon home-icon">
+                            <i class="fa-solid fa-house-user"></i>
+                        </div>
+                    </div>
+                    <h3 class="why-card-title">Personalized Care Plans</h3>
+                    <p class="why-card-text">Tailored medical and lifestyle support designed specifically for your unique health journey.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="why-card">
+                    <div class="why-card-icon-wrapper">
+                        <div class="why-card-icon yoga-icon">
+                            <i class="fa-solid fa-kit-medical"></i>
+                        </div>
+                    </div>
+                    <h3 class="why-card-title">At-Home Physiotherapy</h3>
+                    <p class="why-card-text">Professional rehabilitation and mobility training delivered in the comfort and safety of your home.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="why-card">
+                    <div class="why-card-icon-wrapper">
+                        <div class="why-card-icon recovery-icon">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                    </div>
+                    <h3 class="why-card-title">Recovery & Prevention</h3>
+                    <p class="why-card-text">Focused post-operative care and proactive health strategies to ensure long-term wellness.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="why-card">
+                    <div class="why-card-icon-wrapper">
+                        <div class="why-card-icon friendly-icon">
+                            <i class="fa-solid fa-people-roof"></i>
+                        </div>
+                    </div>
+                    <h3 class="why-card-title">24/7 Supportive Care</h3>
+                    <p class="why-card-text">Compassionate nursing and companionship from professionals who treat your family like their own.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="team-header">
+                <div class="team-title-wrapper">
+                    <div class="team-subtitle">
+                        <span>Our Team</span>
+                    </div>
+                    <h2 class="team-title">Meet Our <span>Caring Therapists</span> , <br>Ready to Help You <span>Heal</span></h2>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <!-- Member 1 -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="assets/Photo 1.png" alt="Jenny Wilson">
+                        <div class="team-info-box">
+                            <h3 class="team-name">Jenny Wilson</h3>
+                            <p class="team-role">Therapist A</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="assets/Team 1.jpeg" alt="Darrell Steward">
+                        <div class="team-info-box">
+                            <h3 class="team-name">Darrell Steward</h3>
+                            <p class="team-role">Therapist C</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="assets/Team 2.jpeg" alt="Cameron Williamson">
+                        <div class="team-info-box">
+                            <h3 class="team-name">Cameron Williamson</h3>
+                            <p class="team-role">Therapist C</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Member 4 -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="assets/Team 3.jpeg" alt="Leslie Alexander">
+                        <div class="team-info-box">
+                            <h3 class="team-name">Leslie Alexander</h3>
+                            <p class="team-role">Therapist D</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-header">
+                <div class="faq-title-area">
+                    <div class="faq-subtitle section-subtitle">
+                        <span>FAQ</span>
+                    </div>
+                    <h2 class="faq-title section-title">Frequently Asked <span>Questions</span></h2>
+                </div>
+                <div class="faq-desc-area section-description">
+                    <p>Find answers to common questions about our home care services and how we can support your health journey.</p>
+                </div>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-column">
+                    <!-- Q1 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What makes Snappy Care the best home healthcare service provider?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Snappy Care is recognized as one of the best home healthcare service providers in Dubai offering personalized and professional medical services directly to your home. Our team of DHA-licensed professionals ensures compassionate care, making us a trusted choice for families seeking quality home health services.</p>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What types of home healthcare services do you offer?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We provide a comprehensive range of home healthcare services in Dubai, including elderly care, pregnancy care, babycare, nursing services, physiotherapy care, doctor on call, lab tests, IV therapy, wound care, and specialized support for children with autism.</p>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Who can benefit from home health care services?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Home health care services from Snappy Care benefit a wide range of individuals, especially those needing assistance at home due to medical or personal reasons. Elderly individuals requiring daily support, patients recovering from surgeries, and those with chronic conditions can all benefit from home care in Dubai. New mothers, babies, and individuals needing physiotherapy or specialized medical treatments like IV therapy also find these services helpful.</p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How quickly can I receive services from Snappy Care?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our team is available 24/7, and we strive to provide prompt services, often within an hour of booking, ensuring timely medical attention when you need it most.</p>
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What are the payment channels available?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can make the payment using a card, online transfer, or cheque—whichever is most convenient for you.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-column">
+                    <!-- Q6 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the refund policy of Snappycare?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We will refund if service was not satisfactory and if its within 24 hrs.</p>
+                        </div>
+                    </div>
+                    <!-- Q7 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Are services covered by insurance in the UAE?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Coverage depends on your specific insurance plan. We recommend contacting your insurance provider to confirm if our services are included in your policy.</p>
+                        </div>
+                    </div>
+                    <!-- Q8 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I customize the services to fit my needs?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. We tailor our services to meet individual health requirements, ensuring personalized care plans that align with each client’s specific needs.</p>
+                        </div>
+                    </div>
+                    <!-- Q9 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Why choose Snappy Care over other providers?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Snappy Care stands out for its commitment to delivering high-quality, patient-centered care. Our experienced professionals, comprehensive service offerings, and dedication to client satisfaction position us as a leading choice for home healthcare services in the UAE.</p>
+                        </div>
+                    </div>
+                    <!-- Q10 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do you offer pediatric home healthcare services?</h3>
+                            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we provide specialized pediatric care, including babysitting services, developmental support, and medical care tailored to children’s unique needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Partners Section -->
+    <section class="insurance" id="insurance">
+        <div class="container">
+            <div class="insurance-header">
+                <div class="insurance-title-area">
+                    <div class="insurance-subtitle section-subtitle">
+                        <span>Partners</span>
+                    </div>
+                    <h2 class="insurance-title section-title">Our Insurance <span>Partners</span></h2>
+                </div>
+                <div class="insurance-desc-area section-description">
+                    <p>We accept a wide range of major health insurance plans to ensure you receive the care you need without financial stress.</p>
+                </div>
+            </div>
+
+            <div class="insurance-grid">
+                <div class="insurance-logo">
+                    <img src="assets/nextcare.svg" alt="Nextcare">
+                </div>
+                <div class="insurance-logo">
+                    <img src="assets/nas.svg" alt="NAS">
+                </div>
+                <div class="insurance-logo">
+                    <img src="assets/enaya.svg" alt="Enaya">
+                </div>
+                <div class="insurance-logo">
+                    <img src="assets/almadallah insurance.svg" alt="Almadallah">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="testimonials-header">
+                <div class="testimonials-subtitle section-subtitle">
+                    <span>Testimonials</span>
+                </div>
+                <h2 class="testimonials-title section-title">Healing Lives Through <span>Compassionate Care</span></h2>
+            </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonials-track">
+                    <!-- Review 1 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Customised <span class="highlight-black">baby care service</span> and flexible. Staff are loyal and fulfilled our baby needs. My 3-year-old girl was very active with Nurse Ms. Nina. Highly appreciated."
+                        </p>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Ravi Shankar</h4>
+                                <p class="testimonial-handle">Verified Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "I booked my blood sample collection at home with Snappy Care. Staff was highly professional and <span class="highlight-black">done the procedure in a very smooth way</span>. Thank you."
+                        </p>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Basit Mukri</h4>
+                                <p class="testimonial-handle">Verified Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Taken physiotherapy service today. It was severe pain on right shoulder and <span class="highlight-black">got relieved after the session</span>. Thank you Dr. Ulfat for taking utmost care. Thanks."
+                        </p>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Srikanth Prashanth</h4>
+                                <p class="testimonial-handle">Verified Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "<span class="highlight-black">Really excellent service provided for mother care</span>. Just thank you is not enough for the care provided. Staffs are professional and their behavior is good."
+                        </p>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Mahasoom Deen</h4>
+                                <p class="testimonial-handle">Verified Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "The service was <span class="highlight-black">impeccable! Attentive, knowledgeable</span> and professional staff. Truly a high-quality experience from start to finish."
+                        </p>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Shahrooz Muhammad Anwar</h4>
+                                <p class="testimonial-handle">Verified Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 6 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "<span class="highlight-black">Professional services</span>. Thank you Snappy Care for the timely support and care provided to our family."
+                        </p>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Jafar Jawad</h4>
+                                <p class="testimonial-handle">Verified Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 7 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Serving the elderly requires staff who are <span class="highlight-black">dedicated to your well-being</span>. I found that peace and trustworthiness at Snappy Care."
+                        </p>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Walid Khalil</h4>
+                                <p class="testimonial-handle">Verified Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clone for Loop (Review 1) -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Customised <span class="highlight-black">baby care service</span> and flexible. Staff are loyal and fulfilled our baby needs. My 3-year-old girl was very active with Nurse Ms. Nina."
+                        </p>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Ravi Shankar</h4>
+                                <p class="testimonial-handle">Verified Patient</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section (Blogs, News, Events) -->
+    <section class="insights" id="insights">
+        <div class="container">
+            <div class="insights-header">
+                <div class="insights-title-area">
+                    <div class="insights-subtitle section-subtitle">
+                        <span>Expert Advice</span>
+                    </div>
+                    <h2 class="insights-title section-title">Our Latest <span>Blog Posts</span></h2>
+                    <div class="insights-desc-area section-description">
+                        <p>Expert medical advice, healthy living tips, and professional care guides from our licensed DHA healthcare team.</p>
+                    </div>
+                </div>
+                <div class="insights-actions">
+                    <a href="#" class="btn-secondary">View All Posts</a>
+                </div>
+            </div>
+
+            <div class="insights-grid">
+                <!-- Blog Post 1 -->
+                <article class="insight-card">
+                    <div class="insight-image">
+                        <img src="assets/blog_elderly.png" alt="Elderly Care Tips">
+                        <span class="insight-tag tag-blog">Blog</span>
+                    </div>
+                    <div class="insight-content">
+                        <div class="insight-meta">
+                            <span><i class="fa-regular fa-calendar"></i> May 12, 2024</span>
+                            <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h3 class="insight-title-link"><a href="#">5 Tips for Professional Elderly Care at Home</a></h3>
+                        <p class="insight-excerpt">Providing the best care for your loved ones requires patience, specialized knowledge, and a warm heart...</p>
+                        <a href="#" class="insight-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="insight-card">
+                    <div class="insight-image">
+                        <img src="assets/blog_physio.png" alt="Physiotherapy">
+                        <span class="insight-tag tag-blog">Blog</span>
+                    </div>
+                    <div class="insight-content">
+                        <div class="insight-meta">
+                            <span><i class="fa-regular fa-calendar"></i> May 08, 2024</span>
+                            <span><i class="fa-regular fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h3 class="insight-title-link"><a href="#">Benefits of Home-Based Physiotherapy</a></h3>
+                        <p class="insight-excerpt">Recovering in the comfort of your own home can significantly speed up the healing process for many patients...</p>
+                        <a href="#" class="insight-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="insight-card">
+                    <div class="insight-image">
+                        <img src="assets/blog_newborn.png" alt="Newborn Care">
+                        <span class="insight-tag tag-blog">Blog</span>
+                    </div>
+                    <div class="insight-content">
+                        <div class="insight-meta">
+                            <span><i class="fa-regular fa-calendar"></i> May 05, 2024</span>
+                            <span><i class="fa-regular fa-clock"></i> 4 min read</span>
+                        </div>
+                        <h3 class="insight-title-link"><a href="#">Essential Tips for Newborn Care at Home</a></h3>
+                        <p class="insight-excerpt">Bringing a new baby home is an exciting journey. Our experts share the critical first steps for new parents...</p>
+                        <a href="#" class="insight-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/Snappy_Care.png" alt="Snappy Care Logo">
+                    </div>
+                    <p class="footer-about">
+                        Snappy Care is a premier home healthcare provider in Dubai, dedicated to delivering compassionate, DHA-licensed medical services to your doorstep.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/snappycare/"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/snappycare/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/snappycare/"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/snappycare/"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#insights">Insights Blog</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Elderly Care</a></li>
+                        <li><a href="#">Pregnancy Care</a></li>
+                        <li><a href="#">Baby Care</a></li>
+                        <li><a href="#">Physiotherapy</a></li>
+                        <li><a href="#">Nursing Care</a></li>
+                        <li><a href="#">Autism Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Elite Business Centre, Office 506,<br>Al Barsha 1, Dubai, UAE</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+971 522 713 045</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>info@snappycare.com</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <span>9 AM – 5 PM, Monday – Saturday</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Snappy Care. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
