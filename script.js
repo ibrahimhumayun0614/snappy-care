@@ -31,7 +31,8 @@
         '.faq-subtitle', '.faq-title', '.faq-item',
         '.insurance-subtitle', '.insurance-title', '.insurance-logo',
         '.testimonials-subtitle', '.testimonials-title', '.testimonial-card',
-        '.insights-subtitle', '.insights-title', '.insight-card'
+        '.insights-subtitle', '.insights-title', '.insight-card',
+        '.page-title', '.contact-info-card', '.contact-form-card', '.map-container'
     ];
 
     var revealElements = [];
@@ -365,4 +366,131 @@
     track.addEventListener('mouseleave', function() { isPaused = false; });
     
     animate();
+})();
+
+// ===== Custom Select Dropdown Logic =====
+(function() {
+    var customSelects = document.querySelectorAll('.custom-select');
+    if (!customSelects.length) return;
+
+    var subServiceData = {
+        'autism': ['Autism Caregiver', 'Special Needs Child Care', 'ASD/AHSD Care (3 Months)', 'ASD/AHSD Care (1 Year Contract)'],
+        'elderly': ['Post-Surgery Care', 'General Care Help', 'Professional Caregivers', 'Wound Care'],
+        'pregnancy': ['Personalized Nutritional Counseling', 'Fitness and Wellness Programs', 'Prenatal Education Workshops', 'Emotional and Psychological Support', 'Postpartum Care'],
+        'physio': ['Pain Management', 'Mobility and Strength Training', 'Balance and Fall Prevention', 'Post-operative Rehabilitation', 'Chronic Condition Management', 'Evaluation and Treatment Plans'],
+        'baby': ['Babysitter', 'Nanny', 'Special Needs Care'],
+        'doctor': ['GP Visit at Home'],
+        'nursing': ['Wound Dressing', 'IV or IM Injections', 'Overnight Stays', 'Personal Care'],
+        'iv': ['Immune Booster', 'Hangover Booster', 'Detox IV', 'Vitamins Infusion', 'Memory Boost', 'Diabetic Therapy', 'Fertility Boost (Male/Female)', 'Hair Loss IV Therapy', 'Cardio Support IV Therapy'],
+        'lab': ['Comprehensive Wellness Package', 'Anemia Profile Analysis', 'Hormone Profile (Men & Women)', 'PCOS/PCOD Package', 'Cancer Marker Screening', 'Pediatric Package', 'STD Profile Screening', 'General Lab Tests', 'Thyroid Profile Testing']
+    };
+
+    function initSelect(select) {
+        var trigger = select.querySelector('.custom-select-trigger');
+        var optionsContainer = select.querySelector('.custom-options');
+        var options = optionsContainer.querySelectorAll('.custom-option');
+        var hiddenInput = select.parentElement.querySelector('input[type="hidden"]');
+
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('.custom-select').forEach(function(s) {
+                if (s !== select) s.classList.remove('open');
+            });
+            select.classList.toggle('open');
+        });
+
+        function handleOptionClick(option) {
+            var value = option.getAttribute('data-value');
+            var text = option.textContent;
+
+            trigger.querySelector('span').textContent = text;
+            if (hiddenInput) {
+                hiddenInput.value = value;
+                var event = new Event('change');
+                hiddenInput.dispatchEvent(event);
+            }
+
+            optionsContainer.querySelectorAll('.custom-option').forEach(function(opt) { 
+                opt.classList.remove('selected'); 
+            });
+            option.classList.add('selected');
+            select.classList.remove('open');
+
+            // Handle sub-service logic
+            if (select.id === 'service-select') {
+                updateSubServices(value);
+            }
+        }
+
+        options.forEach(function(option) {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                handleOptionClick(this);
+            });
+        });
+
+        return handleOptionClick;
+    }
+
+    function updateSubServices(serviceKey) {
+        var subRow = document.getElementById('sub-service-row');
+        var subOptionsContainer = document.getElementById('sub-service-options');
+        var subHiddenInput = document.getElementById('sub-service');
+        var subSelect = document.getElementById('sub-service-select');
+        var subTriggerSpan = subSelect.querySelector('.custom-select-trigger span');
+
+        if (!subRow || !subOptionsContainer) return;
+
+        var subItems = subServiceData[serviceKey];
+
+        if (subItems && subItems.length > 0) {
+            // Clear current options
+            subOptionsContainer.innerHTML = '';
+            
+            // Populate new options
+            subItems.forEach(function(item) {
+                var span = document.createElement('span');
+                span.className = 'custom-option';
+                span.setAttribute('data-value', item.toLowerCase().replace(/\s+/g, '-'));
+                span.textContent = item;
+                subOptionsContainer.appendChild(span);
+                
+                span.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    subTriggerSpan.textContent = item;
+                    subHiddenInput.value = span.getAttribute('data-value');
+                    
+                    subOptionsContainer.querySelectorAll('.custom-option').forEach(function(opt) {
+                        opt.classList.remove('selected');
+                    });
+                    span.classList.add('selected');
+                    subSelect.classList.remove('open');
+                });
+            });
+
+            // Reset sub-selection
+            subTriggerSpan.textContent = 'Select an option';
+            subHiddenInput.value = '';
+            
+            // Show the row
+            subRow.style.display = 'block';
+            
+            // Re-apply motion reveal if needed
+            subRow.style.opacity = '1';
+            subRow.style.transform = 'translateY(0)';
+        } else {
+            subRow.style.display = 'none';
+            subHiddenInput.value = '';
+        }
+    }
+
+    customSelects.forEach(function(select) {
+        initSelect(select);
+    });
+
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.custom-select').forEach(function(select) {
+            select.classList.remove('open');
+        });
+    });
 })();
