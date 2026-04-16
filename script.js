@@ -494,3 +494,87 @@
         });
     });
 })();
+
+// ===== Job Description Toggle Logic =====
+(function() {
+    const toggleButtons = document.querySelectorAll('.toggle-details');
+    if (!toggleButtons.length) return;
+
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const positionItem = button.closest('.position-item');
+            const description = positionItem.querySelector('.job-description');
+            
+            // Toggle active classes
+            button.classList.toggle('active');
+            description.classList.toggle('active');
+            
+            // Update button text
+            if (description.classList.contains('active')) {
+                button.innerHTML = 'Hide Details <i class="fa-solid fa-chevron-up"></i>';
+            } else {
+                button.innerHTML = 'View Details <i class="fa-solid fa-chevron-down"></i>';
+            }
+        });
+    });
+
+    // Application Modal Logic
+    const applyModal = document.getElementById('applyModal');
+    const applyButtons = document.querySelectorAll('.apply-btn');
+    const closeModal = document.getElementById('closeModal');
+    const modalJobTitle = document.getElementById('modalJobTitle');
+    const appliedPositionField = document.getElementById('appliedPositionField');
+    const applicationForm = document.getElementById('applicationForm');
+
+    if (applyModal && applyButtons.length > 0) {
+        applyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const positionItem = button.closest('.position-item');
+                const jobTitle = positionItem.querySelector('.pos-title').textContent;
+                
+                // Populate modal
+                modalJobTitle.textContent = jobTitle;
+                appliedPositionField.value = jobTitle;
+                
+                // Show modal
+                applyModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scroll
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            applyModal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scroll
+        });
+
+        // Close on clicking outside container
+        applyModal.addEventListener('click', (e) => {
+            if (e.target === applyModal) {
+                applyModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Form Submission
+        if (applicationForm) {
+            applicationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you! Your application for ' + appliedPositionField.value + ' has been submitted successfully.');
+                applyModal.classList.remove('active');
+                document.body.style.overflow = '';
+                applicationForm.reset();
+            });
+        }
+
+        // Handle File Name Display
+        const resumeUpload = document.getElementById('resumeUpload');
+        const fileUploadContent = document.querySelector('.file-upload-content span');
+        if (resumeUpload) {
+            resumeUpload.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    fileUploadContent.textContent = 'Selected: ' + e.target.files[0].name;
+                }
+            });
+        }
+    }
+})();
