@@ -32,7 +32,9 @@
         '.insurance-subtitle', '.insurance-title', '.insurance-logo',
         '.testimonials-subtitle', '.testimonials-title', '.testimonial-card',
         '.insights-subtitle', '.insights-title', '.insight-card',
-        '.page-title', '.contact-info-card', '.contact-form-card', '.map-container'
+        '.page-title', '.contact-info-card', '.contact-form-card', '.map-container',
+        '.about-intro-grid', '.pillar-card', '.feature-row', '.community-impact-card', '.partner-logo-item',
+        '.chairman-container', '.team-member-profile', '.value-item'
     ];
 
     var revealElements = [];
@@ -577,4 +579,72 @@
             });
         }
     }
+})();
+
+// ===== Community Slider Logic =====
+(function() {
+    var track = document.querySelector('.community-slider-track');
+    var slides = document.querySelectorAll('.community-slide');
+    var dots = document.querySelectorAll('.slider-dot');
+    var prevBtn = document.querySelector('.arrow-prev');
+    var nextBtn = document.querySelector('.arrow-next');
+
+    if (!track || slides.length === 0) return;
+
+    var currentIndex = 0;
+
+    function updateSlider(index) {
+        currentIndex = index;
+        var offset = -currentIndex * 100;
+        track.style.transform = 'translateX(' + offset + '%)';
+
+        // Update dots
+        dots.forEach(function(dot, i) {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+            var index = parseInt(this.dataset.index);
+            updateSlider(index);
+        });
+    });
+
+    // Auto-slide every 5 seconds
+    var autoSlide = setInterval(function() {
+        var index = (currentIndex + 1) % slides.length;
+        updateSlider(index);
+    }, 5000);
+
+    // Pause on hover
+    var container = document.querySelector('.community-slider-container');
+    if (container) {
+        container.addEventListener('mouseenter', function() {
+            clearInterval(autoSlide);
+        });
+        container.addEventListener('mouseleave', function() {
+            autoSlide = setInterval(function() {
+                var index = (currentIndex + 1) % slides.length;
+                updateSlider(index);
+            }, 5000);
+        });
+    }
+})();
+
+// Reveal on Scroll Logic
+(function() {
+    var revealElements = document.querySelectorAll('.reveal');
+    var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(function(el) {
+        revealObserver.observe(el);
+    });
 })();
