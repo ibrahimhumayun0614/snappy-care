@@ -730,6 +730,33 @@
     var hash = window.location.hash ? window.location.hash.substring(1) : '';
     var initial = headings.some(function(heading) { return heading.id === hash; }) ? hash : headings[0].id;
     setActive(initial);
+
+    var tocPanel = tocList.closest('.blog-toc-panel');
+    var mobileTocQuery = window.matchMedia('(max-width: 1180px)');
+    var postEndMarker = document.querySelector('.blog-post-end-marker');
+
+    function updateMobileTocBoundary() {
+        if (!tocPanel) return;
+
+        if (!mobileTocQuery.matches) {
+            tocPanel.classList.remove('is-past-post');
+            return;
+        }
+
+        var tocHeight = tocPanel.offsetHeight || 72;
+        var boundaryRect = (postEndMarker || postContent).getBoundingClientRect();
+        var shouldHide = boundaryRect.top <= window.innerHeight - tocHeight - 8;
+        tocPanel.classList.toggle('is-past-post', shouldHide);
+    }
+
+    updateMobileTocBoundary();
+    window.addEventListener('scroll', updateMobileTocBoundary, { passive: true });
+    window.addEventListener('resize', updateMobileTocBoundary);
+    if (mobileTocQuery.addEventListener) {
+        mobileTocQuery.addEventListener('change', updateMobileTocBoundary);
+    } else if (mobileTocQuery.addListener) {
+        mobileTocQuery.addListener(updateMobileTocBoundary);
+    }
 })();
 
 // ===== Blog Appointment Modal =====
