@@ -419,8 +419,8 @@
             select.classList.remove('open');
 
             // Handle sub-service logic
-            if (select.id === 'service-select') {
-                updateSubServices(value);
+            if (hiddenInput && hiddenInput.name === 'service') {
+                updateSubServices(value, select);
             }
         }
 
@@ -434,14 +434,17 @@
         return handleOptionClick;
     }
 
-    function updateSubServices(serviceKey) {
-        var subRow = document.getElementById('sub-service-row');
-        var subOptionsContainer = document.getElementById('sub-service-options');
-        var subHiddenInput = document.getElementById('sub-service');
-        var subSelect = document.getElementById('sub-service-select');
-        var subTriggerSpan = subSelect.querySelector('.custom-select-trigger span');
+    function updateSubServices(serviceKey, serviceSelect) {
+        var form = serviceSelect ? serviceSelect.closest('form') : document;
+        var subRow = form.querySelector('[data-sub-service-row], #sub-service-row');
+        var subOptionsContainer = form.querySelector('[data-sub-service-options], #sub-service-options');
+        var subHiddenInput = form.querySelector('input[name="sub-service"]');
+        var subSelect = form.querySelector('[data-sub-service-select], #sub-service-select');
 
-        if (!subRow || !subOptionsContainer) return;
+        if (!subRow || !subOptionsContainer || !subHiddenInput || !subSelect) return;
+
+        var subTriggerSpan = subSelect.querySelector('.custom-select-trigger span');
+        if (!subTriggerSpan) return;
 
         var subItems = subServiceData[serviceKey];
 
@@ -646,5 +649,188 @@
 
     revealElements.forEach(function(el) {
         revealObserver.observe(el);
+    });
+})();
+
+// ===== Blog Post TOC (auto from h2) =====
+(function() {
+    var postContent = document.getElementById('blog-post-content');
+    var tocList = document.getElementById('blog-toc-list');
+    if (!postContent || !tocList) return;
+
+    var headings = Array.prototype.slice.call(postContent.querySelectorAll('h2'));
+    if (!headings.length) return;
+
+    function slugify(value) {
+        return value
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .trim()
+            .replace(/\s+/g, '-');
+    }
+
+    var usedIds = {};
+    headings.forEach(function(heading, index) {
+        var base = heading.id || slugify(heading.textContent) || ('section-' + (index + 1));
+        var unique = base;
+        if (usedIds[base] != null) {
+            usedIds[base] += 1;
+            unique = base + '-' + usedIds[base];
+        } else {
+            usedIds[base] = 0;
+        }
+        heading.id = unique;
+
+        var listItem = document.createElement('li');
+        var link = document.createElement('a');
+        link.href = '#' + unique;
+        link.className = 'blog-toc-link';
+        link.textContent = heading.textContent;
+
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + unique);
+        });
+
+        listItem.appendChild(link);
+        tocList.appendChild(listItem);
+    });
+
+    var tocLinks = Array.prototype.slice.call(tocList.querySelectorAll('.blog-toc-link'));
+    function setActive(activeId) {
+        tocLinks.forEach(function(link) {
+            var isActive = link.getAttribute('href') === ('#' + activeId);
+            link.classList.toggle('active', isActive);
+        });
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                setActive(entry.target.id);
+            }
+        });
+    }, {
+        rootMargin: '-18% 0px -62% 0px',
+        threshold: 0
+    });
+
+    headings.forEach(function(heading) {
+        observer.observe(heading);
+    });
+
+    var hash = window.location.hash ? window.location.hash.substring(1) : '';
+    var initial = headings.some(function(heading) { return heading.id === hash; }) ? hash : headings[0].id;
+    setActive(initial);
+})();
+
+// ===== Blog Appointment Modal =====
+(function() {
+    var modal = document.getElementById('appointmentModal');
+    var triggers = document.querySelectorAll('.appointment-modal-trigger');
+    var closeButton = document.getElementById('appointmentModalClose');
+    var form = document.getElementById('appointment-form');
+    if (!modal || !triggers.length || !closeButton) return;
+
+    function openModal() {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        var firstField = modal.querySelector('form input, form textarea, form button');
+        if (firstField) firstField.focus();
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    triggers.forEach(function(trigger) {
+        trigger.addEventListener('click', openModal);
+    });
+
+    closeButton.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Thank you for your message! Our team will contact you soon.');
+            form.reset();
+            form.querySelectorAll('.custom-select').forEach(function(select) {
+                select.classList.remove('open');
+                select.querySelectorAll('.custom-option').forEach(function(option) {
+                    option.classList.remove('selected');
+                });
+            });
+
+            var serviceLabel = form.querySelector('#appointment-service-select .custom-select-trigger span');
+            var subServiceLabel = form.querySelector('#appointment-sub-service-select .custom-select-trigger span');
+            var subServiceRow = form.querySelector('#appointment-sub-service-row');
+            if (serviceLabel) serviceLabel.textContent = 'Select a service';
+            if (subServiceLabel) subServiceLabel.textContent = 'Select an option';
+            if (subServiceRow) subServiceRow.style.display = 'none';
+            closeModal();
+        });
+    }
+})();
+
+// ===== Blog Post Copy Link =====
+(function() {
+    var copyButton = document.getElementById('blog-post-copy');
+    if (!copyButton) return;
+
+    var defaultTitle = copyButton.getAttribute('title') || 'Copy post link';
+    var resetTimer = null;
+
+    function setCopiedState(text) {
+        copyButton.setAttribute('title', text);
+        copyButton.setAttribute('aria-label', text);
+        copyButton.classList.add('copied');
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function() {
+            copyButton.setAttribute('title', defaultTitle);
+            copyButton.setAttribute('aria-label', defaultTitle);
+            copyButton.classList.remove('copied');
+        }, 1800);
+    }
+
+    copyButton.addEventListener('click', function() {
+        var url = window.location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function() {
+                setCopiedState('Copied');
+            }).catch(function() {
+                setCopiedState('Copy failed');
+            });
+            return;
+        }
+
+        var input = document.createElement('input');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+
+        try {
+            document.execCommand('copy');
+            setCopiedState('Copied');
+        } catch (error) {
+            setCopiedState('Copy failed');
+        }
+
+        document.body.removeChild(input);
     });
 })();
