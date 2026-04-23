@@ -702,6 +702,13 @@
         tocLinks.forEach(function(link) {
             var isActive = link.getAttribute('href') === ('#' + activeId);
             link.classList.toggle('active', isActive);
+            if (isActive && window.innerWidth <= 1180) {
+                link.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+            }
         });
     }
 
