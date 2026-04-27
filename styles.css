@@ -7,6 +7,978 @@
     box-sizing: border-box;
 }
 
+/* ===================================
+   SERVICES PAGE STYLES
+   =================================== */
+.services-page {
+    background:
+        radial-gradient(circle at top right, rgba(137, 167, 122, 0.18), transparent 28%),
+        linear-gradient(180deg, #f7faf6 0%, #ffffff 18%, #f7faf6 100%);
+}
+
+.services-page .section-header,
+.services-page .section-header.text-center,
+.services-page .services-faq-header {
+    text-align: left;
+    align-items: flex-start;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.services-page .section-header .section-description,
+.services-page .services-faq-header .section-description {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.services-page-header {
+    height: auto;
+    min-height: 720px;
+    padding: 200px 0 170px;
+    align-items: center;
+    background:
+        linear-gradient(90deg, rgba(10, 15, 12, 0.84) 0%, rgba(16, 24, 20, 0.72) 40%, rgba(16, 24, 20, 0.38) 100%),
+        radial-gradient(circle at top right, rgba(159, 184, 145, 0.18), transparent 24%),
+        url('assets/blog_elderly.png');
+    background-position: center, top right, center;
+    background-size: cover, auto, cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+
+.services-page-header .page-header-content {
+    max-width: 760px;
+    padding: 36px;
+    border-radius: 32px;
+    /* -webkit-backdrop-filter: blur(6px); */
+}
+
+.services-overview {
+    position: relative;
+    margin-top: -110px;
+    padding-bottom: 120px;
+}
+
+.services-overview-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+    gap: 36px;
+    align-items: stretch;
+    border-radius: 32px;
+    padding: 24px;
+    background-color: rgba(255, 255, 255, 0.97);    
+    border: 1px solid rgba(137, 167, 122, 0.14);
+    box-shadow: var(--shadow-xl);
+}
+
+.services-overview-copy {
+    padding: 28px;
+}
+
+.services-overview-copy .section-description + .section-description {
+    margin-top: 20px;
+}
+
+.services-overview-actions {
+    margin-top: 32px;
+}
+
+.services-overview-visual {
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+    border-radius: 28px;
+}
+
+.services-overview-image-frame {
+    position: relative;
+    height: 100%;
+    min-height: 540px;
+}
+
+.services-overview-image-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 36px;
+    background: rgba(227, 238, 219, 0.75);
+    filter: blur(4px);
+}
+
+.services-overview-image-frame img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    object-fit: cover;
+    border-radius: 28px;
+    display: block;
+}
+
+.service-cards-section,
+.benefits-section,
+.booking-steps-section {
+    padding: 120px 0;
+}
+
+.service-cards-section {
+    background: transparent;
+}
+
+.why-choose-services,
+.importance-section {
+    padding: 120px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.service-carousel {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.service-carousel-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.service-carousel-nav {
+    display: flex;
+    gap: 12px;
+}
+
+.service-carousel-viewport {
+    overflow: hidden;
+}
+
+.service-carousel-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+.service-carousel-slide {
+    flex: 0 0 calc((100% - 48px) / 3);
+    width: calc((100% - 48px) / 3);
+    padding: 6px 0;
+}
+
+.service-carousel-slide .service-feature-card {
+    min-height: 470px;
+    aspect-ratio: auto;
+    margin: 0;
+    justify-content: flex-start;
+    padding: 34px 30px 22px;
+    background: var(--white);
+    border: 1px solid rgba(137, 167, 122, 0.18);
+    box-shadow: none;
+}
+
+.service-carousel-slide .service-feature-card:hover {
+    box-shadow: none;
+    transform: translateY(-4px);
+}
+
+.service-carousel-slide .service-feature-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 26px;
+    border-radius: 24px;
+    font-size: 28px;
+    background: linear-gradient(180deg, #f1f5ed 0%, #ebf1e5 100%);
+    color: var(--primary-color);
+}
+
+.service-carousel-slide .service-feature-card h3 {
+    font-size: 24px;
+    line-height: 1.25;
+    margin-bottom: 18px;
+    max-width: 260px;
+}
+
+.service-carousel-slide .service-feature-card p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #536173;
+}
+
+.service-carousel-slide .service-feature-card .btn-primary,
+.service-carousel-slide .service-feature-card .btn-secondary {
+    margin-top: 18px;
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 16px;
+}
+
+.service-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.service-carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background-color: rgba(137, 167, 122, 0.28);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.service-carousel-dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.benefits-scroll-layout {
+    display: block;
+}
+
+.benefits-scroll-card {
+    position: sticky;
+    top: 112px;
+    margin-bottom: 16vh;
+}
+
+.benefits-scroll-card:last-child {
+    margin-bottom: 0;
+}
+
+.benefits-scroll-card-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.44fr);
+    gap: 28px;
+    align-items: center;
+    padding: 24px 26px;
+    border-radius: 26px;
+    border: 1px solid rgba(137, 167, 122, 0.16);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 246, 0.96));
+    box-shadow: 0 18px 44px rgba(16, 24, 20, 0.08);
+    opacity: 0.78;
+    transform: translateY(10px) scale(0.985);
+    transition: transform 0.4s ease, opacity 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.benefits-scroll-card.is-active .benefits-scroll-card-inner {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    border-color: rgba(137, 167, 122, 0.32);
+    box-shadow: 0 24px 54px rgba(16, 24, 20, 0.12);
+}
+
+.benefits-scroll-card-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.benefits-scroll-index {
+    flex: 0 0 auto;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #0f1725;
+}
+
+.benefits-scroll-card h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 2.3vw, 32px);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0f1725;
+}
+
+.benefits-scroll-card p {
+    max-width: 620px;
+    font-size: 16px;
+    line-height: 1.65;
+    color: #4e5d70;
+}
+
+.benefits-scroll-media {
+    min-width: 0;
+}
+
+.benefits-scroll-media img {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    display: block;
+    border-radius: 22px;
+    border: 1px solid rgba(137, 167, 122, 0.14);
+    background: linear-gradient(180deg, rgba(247, 250, 246, 0.88), rgba(235, 243, 229, 0.72));
+}
+
+.benefits-scroll-copy {
+    min-width: 0;
+}
+
+.benefits-scroll-card.is-active .benefits-scroll-media img {
+    transform: scale(1);
+}
+
+.benefits-scroll-media img {
+    transition: transform 0.45s ease, opacity 0.35s ease;
+}
+
+.benefits-scroll-card:not(.is-active) .benefits-scroll-media img {
+    transform: scale(0.985);
+    opacity: 0.96;
+}
+
+.benefits-scroll-list {
+    position: relative;
+}
+
+.benefits-scroll-card .benefits-scroll-card-inner {
+    overflow: hidden;
+}
+
+.service-feature-card,
+.benefit-card,
+.importance-card,
+.booking-step-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid rgba(137, 167, 122, 0.14);
+    box-shadow: 0 20px 50px rgba(16, 24, 20, 0.05);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.service-feature-card:hover,
+.benefit-card:hover,
+.importance-card:hover,
+.booking-step-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 60px rgba(16, 24, 20, 0.12);
+    border-color: rgba(116, 148, 101, 0.42);
+}
+
+.service-feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 34px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7faf6 100%);
+}
+
+.service-feature-card.featured {
+    background: linear-gradient(180deg, #eef5e7 0%, #dbe8cf 100%);
+}
+
+.service-feature-icon,
+.benefit-icon,
+.importance-icon {
+    width: 68px;
+    height: 68px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    margin-bottom: 26px;
+    font-size: 28px;
+    color: var(--primary-dark);
+    background-color: rgba(137, 167, 122, 0.12);
+}
+
+.service-feature-card h3,
+.benefit-card h3,
+.importance-card h3,
+.booking-step-card h3 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    line-height: 1.15;
+    color: var(--gray-900);
+    margin-bottom: 14px;
+}
+
+.service-feature-card p,
+.benefit-card p,
+.importance-card p,
+.booking-step-card p {
+    color: var(--gray-600);
+    line-height: 1.7;
+}
+
+.service-feature-card .btn-primary,
+.service-feature-card .btn-secondary {
+    margin-top: 28px;
+}
+
+.why-choose-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: 32px;
+    align-items: stretch;
+    border-radius: 32px;
+    padding: 24px;
+    background-color: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(137, 167, 122, 0.14);
+    box-shadow: var(--shadow-xl);
+}
+
+.why-choose-copy {
+    padding: 28px;
+}
+
+.why-choose-copy .section-description + .section-description {
+    margin-top: 18px;
+}
+
+.why-choose-actions {
+    margin-top: 28px;
+}
+
+.why-choose-photo {
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+    border-radius: 28px;
+}
+
+.why-choose-photo-frame {
+    position: relative;
+    height: 100%;
+    min-height: 540px;
+}
+
+.why-choose-photo-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 36px;
+    background: rgba(227, 238, 219, 0.75);
+    filter: blur(4px);
+}
+
+.why-choose-photo-frame img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    object-fit: cover;
+    border-radius: 28px;
+    display: block;
+}
+
+.benefits-section {
+    padding: 88px 0 92px;
+    background: linear-gradient(180deg, rgba(239, 245, 234, 0.76) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.benefits-section .section-header {
+    margin-bottom: 34px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.benefit-card {
+    padding: 32px;
+    background: linear-gradient(180deg, #ffffff 0%, #f3f8ef 100%);
+}
+
+.benefit-card:nth-child(2n) {
+    background: linear-gradient(180deg, #eef5e9 0%, #ffffff 100%);
+}
+
+.benefit-card-wide {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: center;
+}
+
+.benefit-card-wide .benefit-icon {
+    margin-bottom: 0;
+}
+
+.importance-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.importance-card {
+    min-height: 420px;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    background-color: #dfe9d8;
+}
+
+.importance-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), filter 0.45s ease;
+}
+
+.importance-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(15, 23, 37, 0.06) 0%, rgba(15, 23, 37, 0.2) 42%, rgba(9, 15, 12, 0.84) 100%),
+        linear-gradient(180deg, rgba(137, 167, 122, 0.05) 0%, rgba(137, 167, 122, 0.22) 100%);
+    z-index: 1;
+    transition: opacity 0.35s ease;
+}
+
+.importance-card-overlay {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 24px;
+    color: var(--white);
+    transform: translateY(0);
+    transition: transform 0.35s ease;
+}
+
+.importance-card h3 {
+    color: var(--white);
+    margin-bottom: 0;
+}
+
+.importance-card p {
+    color: rgba(255, 255, 255, 0.84);
+    max-width: 26ch;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(16px);
+    transition: max-height 0.45s ease, opacity 0.35s ease, transform 0.35s ease, margin-top 0.35s ease;
+}
+
+.importance-card.is-visible p {
+    max-height: 180px;
+    opacity: 1;
+    margin-top: 12px;
+    transform: translateY(0);
+}
+
+.importance-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 70px rgba(16, 24, 20, 0.16);
+    border-color: rgba(137, 167, 122, 0.38);
+}
+
+.importance-card:hover img {
+    transform: scale(1.06);
+    filter: saturate(1.05);
+}
+
+.importance-card:hover::before {
+    opacity: 0.98;
+    background:
+        linear-gradient(180deg, rgba(15, 23, 37, 0.04) 0%, rgba(35, 58, 26, 0.24) 38%, rgba(28, 45, 21, 0.88) 100%),
+        linear-gradient(180deg, rgba(137, 167, 122, 0.1) 0%, rgba(137, 167, 122, 0.34) 100%);
+}
+
+.importance-card:hover .importance-card-overlay {
+    transform: translateY(-4px);
+}
+
+.importance-card:hover h3 {
+    color: #f4f8f1;
+}
+
+.booking-steps-section {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 8% 10%, rgba(137, 167, 122, 0.18), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #f3f8ef 100%);
+}
+
+.booking-steps-section::before {
+    content: "";
+    position: absolute;
+    inset: 78px 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(137, 167, 122, 0.28), transparent);
+}
+
+.booking-steps-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.booking-steps-section .section-header {
+    align-items: center;
+    max-width: 760px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.booking-steps-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-top: 18px;
+}
+
+.booking-steps-grid::before {
+    content: "";
+    position: absolute;
+    top: 68px;
+    left: 15%;
+    right: 15%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(137, 167, 122, 0), rgba(137, 167, 122, 0.42), rgba(137, 167, 122, 0));
+}
+
+.booking-step-card {
+    display: block;
+    min-height: 330px;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(137, 167, 122, 0.18);
+    box-shadow: 0 18px 44px rgba(22, 34, 17, 0.06);
+}
+
+.booking-step-card::after {
+    content: "";
+    position: absolute;
+    right: -44px;
+    bottom: -52px;
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    background: rgba(137, 167, 122, 0.1);
+}
+
+.booking-step-card.featured {
+    color: #ffffff;
+    background:
+        linear-gradient(145deg, rgba(58, 84, 48, 0.96), rgba(116, 148, 101, 0.94)),
+        #749465;
+    border-color: rgba(77, 113, 64, 0.32);
+    box-shadow: 0 26px 60px rgba(47, 69, 39, 0.22);
+}
+
+.booking-step-card.featured::after {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.booking-step-number {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 54px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    margin: 0 0 42px;
+    background-color: #eef3ea;
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.booking-step-card.featured .booking-step-number {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.booking-step-card h3,
+.booking-step-card p {
+    position: relative;
+    z-index: 1;
+}
+
+.booking-step-card h3 {
+    max-width: 310px;
+    margin-bottom: 16px;
+    font-size: clamp(23px, 2vw, 30px);
+}
+
+.booking-step-card p {
+    max-width: 360px;
+    font-size: 16px;
+}
+
+.booking-step-card.featured h3,
+.booking-step-card.featured p {
+    color: #ffffff;
+}
+
+.booking-step-card.featured p {
+    opacity: 0.88;
+}
+
+.booking-steps-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 34px;
+}
+
+.booking-steps-action .btn-primary {
+    min-height: 56px;
+    padding: 16px 24px;
+    border-radius: 999px;
+    box-shadow: 0 18px 36px rgba(116, 148, 101, 0.24);
+}
+
+.services-faq {
+    background-color: #ffffff;
+    padding-top: 40px;
+}
+
+.services-faq .faq-desc-area {
+    max-width: 620px;
+}
+
+@media (max-width: 1200px) {
+    .service-carousel {
+        max-width: 100%;
+    }
+
+    .service-carousel-slide {
+        flex: 0 0 calc((100% - 24px) / 2);
+        width: calc((100% - 24px) / 2);
+    }
+
+    .benefits-scroll-card h3 {
+        font-size: clamp(22px, 2.2vw, 28px);
+    }
+
+    .benefits-scroll-card-inner {
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 0.4fr);
+        gap: 22px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .importance-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .benefit-card-wide {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 1024px) {
+    .services-page-header {
+        min-height: 640px;
+        padding: 180px 0 140px;
+    }
+
+    .services-overview {
+        margin-top: -80px;
+        padding-bottom: 100px;
+    }
+
+    .services-overview-grid,
+    .why-choose-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-cards-section,
+    .why-choose-services,
+    .benefits-section,
+    .importance-section,
+    .booking-steps-section {
+        padding: 100px 0;
+    }
+
+    .booking-steps-grid {
+        grid-template-columns: 1fr;
+        max-width: 680px;
+    }
+
+    .booking-steps-grid::before {
+        display: none;
+    }
+
+    .booking-step-card {
+        min-height: auto;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .services-page-header {
+        min-height: 580px;
+        padding: 150px 0 120px;
+    }
+
+    .services-page-header .page-header-content {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .services-overview {
+        margin-top: -60px;
+        padding-bottom: 80px;
+    }
+
+    .services-overview-copy,
+    .why-choose-copy,
+    .service-feature-card,
+    .benefit-card,
+    .importance-card,
+    .booking-step-card {
+        padding: 26px;
+        border-radius: 24px;
+    }
+
+    .benefits-grid,
+    .importance-grid,
+    .booking-steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefit-card-wide {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .benefit-card-wide .benefit-icon {
+        margin-bottom: 26px;
+    }
+
+    .services-overview-image-frame {
+        min-height: 360px;
+    }
+
+    .services-overview-image-frame img {
+        min-height: 336px;
+        border-radius: 20px;
+    }
+
+    .services-overview-grid {
+        padding: 14px;
+        gap: 18px;
+        border-radius: 24px;
+    }
+
+    .services-overview-copy {
+        padding: 12px;
+    }
+
+    .why-choose-grid {
+        padding: 14px;
+        gap: 18px;
+        border-radius: 24px;
+    }
+
+    .why-choose-copy {
+        padding: 12px;
+    }
+
+    .benefits-scroll-card {
+        position: relative;
+        top: auto;
+        margin-bottom: 18px;
+    }
+
+    .benefits-scroll-card-inner {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 22px 22px 24px;
+        border-radius: 22px;
+    }
+
+    .benefits-scroll-card-head {
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+
+    .benefits-scroll-index {
+        font-size: 18px;
+    }
+
+    .benefits-scroll-card h3 {
+        font-size: 24px;
+    }
+
+    .benefits-scroll-card p {
+        font-size: 15px;
+    }
+
+    .benefits-scroll-media img {
+        min-height: 240px;
+        border-radius: 18px;
+    }
+
+    .service-feature-card h3,
+    .benefit-card h3,
+    .importance-card h3,
+    .booking-step-card h3 {
+        font-size: 22px;
+    }
+
+    .importance-card {
+        min-height: 360px;
+        padding: 0;
+    }
+
+    .importance-card-overlay {
+        padding: 20px;
+    }
+
+    .importance-card p {
+        max-width: none;
+    }
+
+    .why-choose-photo-frame {
+        min-height: 360px;
+    }
+
+    .why-choose-photo-frame img {
+        min-height: 336px;
+        border-radius: 20px;
+    }
+
+    .service-carousel-header {
+        margin-bottom: 18px;
+    }
+
+    .service-carousel-track {
+        gap: 18px;
+    }
+
+    .service-carousel-slide {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .service-carousel-slide .service-feature-card {
+        max-width: none;
+        aspect-ratio: auto;
+        min-height: 0;
+    }
+}
+
 :root {
     /* Brand Colors */
     --primary-color: #89A77A;
@@ -45,12 +1017,6 @@ html {
     scroll-behavior: smooth;
 }
 
-*,
-*::before,
-*::after {
-    scroll-behavior: inherit;
-}
-
 body {
     font-family: var(--font-body);
     font-size: var(--body-font-size);
@@ -58,12 +1024,6 @@ body {
     color: var(--gray-800);
     background-color: var(--white);
     overflow-x: hidden;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
 }
 
 .container {
@@ -249,7 +1209,7 @@ body {
 }
 
 /* Dropdown Menu */
-.nav .dropdown-menu {
+.dropdown-menu {
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
@@ -269,7 +1229,7 @@ body {
     transform-origin: top center;
 }
 
-.nav .nav-item:hover > .dropdown-menu {
+.nav-item:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
@@ -424,7 +1384,7 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg,
-            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.3) 0%,
             rgba(0, 0, 0, 0.5) 50%,
             rgba(0, 0, 0, 0.6) 100%);
     z-index: 1;
@@ -635,21 +1595,26 @@ body {
         font-weight: 600;
     }
 
-    .nav .dropdown-menu {
+    .dropdown-menu {
         position: static;
         opacity: 1;
         visibility: visible;
         transform: none;
         box-shadow: none;
         border: none;
-        padding: 0 0 8px 16px;
-        display: none;
+        padding: 0 0 0 16px;
+        max-height: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         background-color: transparent;
     }
 
-    .nav .nav-item.dropdown-active > .dropdown-menu {
-        display: block;
-        margin-top: -4px;
+    .nav-item.dropdown-active .dropdown-menu {
+        max-height: 800px;
+        padding-bottom: 8px;
+        margin-top: -2px;
+        pointer-events: auto;
     }
 
     .dropdown-link {
@@ -1779,14 +2744,11 @@ body {
 }
 
 .faq-icon {
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--gray-200);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+    flex: 0 0 auto;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
     color: var(--gray-400);
     transition: all 0.3s ease;
 }
@@ -1796,7 +2758,6 @@ body {
 }
 
 .faq-item:hover .faq-icon {
-    border-color: var(--primary-color);
     color: var(--primary-color);
 }
 
@@ -1821,10 +2782,7 @@ body {
 }
 
 .faq-item.active .faq-icon {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: var(--white);
-    transform: rotate(45deg);
+    color: var(--primary-color);
 }
 
 .faq-item.active .faq-question h3 {
@@ -2332,7 +3290,7 @@ body {
     transform: rotate(180deg);
 }
 
-.custom-dropdown .dropdown-menu {
+.dropdown-menu {
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
@@ -2355,7 +3313,7 @@ body {
     transform: translateY(0);
 }
 
-.custom-dropdown .dropdown-item {
+.dropdown-item {
     padding: 10px 12px;
     border-radius: 8px;
     font-size: 14px;
@@ -2364,18 +3322,18 @@ body {
     transition: all 0.2s ease;
 }
 
-.custom-dropdown .dropdown-item:hover {
+.dropdown-item:hover {
     background-color: #f0f4ee;
     color: var(--primary-color);
 }
 
-.custom-dropdown .dropdown-item.active {
+.dropdown-item.active {
     background-color: transparent;
     color: var(--primary-color);
     font-weight: 700;
 }
 
-.custom-dropdown .dropdown-item.active::after {
+.dropdown-item.active::after {
     content: '\f00c'; /* Font Awesome check icon */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
@@ -3222,7 +4180,7 @@ body {
 
 .btn-sm {
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* Responsive Contact */
@@ -4808,7 +5766,7 @@ body {
         padding: 0 16px;
     }
 
-    .custom-dropdown .dropdown-menu {
+    .dropdown-menu {
         position: relative;
         top: 0;
         left: 0;
@@ -4826,7 +5784,7 @@ body {
         display: block;
     }
 
-    .custom-dropdown .dropdown-item {
+    .dropdown-item {
         padding: 12px 16px;
         font-size: 15px;
     }
@@ -5089,10 +6047,6 @@ body {
 .blog-post-content {
     order: 1;
     flex: 0 1 auto;
-}
-
-.blog-post-end-marker {
-    display: none;
 }
 
 .blog-toc-panel {
@@ -5553,23 +6507,6 @@ body {
         border-radius: 999px;
         padding: 8px;
         box-shadow: 0 14px 32px rgba(31, 41, 55, 0.16);
-        transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
-    }
-
-    .blog-toc-panel.is-past-post {
-        display: none !important;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: translateY(calc(100% + 18px));
-    }
-
-    .blog-post-end-marker {
-        order: 3;
-        display: block;
-        width: 100%;
-        height: 1px;
-        pointer-events: none;
     }
 
     .blog-toc-heading {
@@ -5666,5 +6603,53 @@ body {
 
     .blog-post-footer {
         align-items: flex-start;
+    }
+}
+
+/* Services page final overrides placed last so shared page-header rules don't win */
+.page-header.services-page-header {
+    height: auto;
+    min-height: 720px;
+    padding: 200px 0 170px;
+    align-items: center;
+    background:
+        linear-gradient(90deg, rgba(10, 15, 12, 0.84) 0%, rgba(16, 24, 20, 0.72) 40%, rgba(16, 24, 20, 0.38) 100%),
+        radial-gradient(circle at top right, rgba(159, 184, 145, 0.18), transparent 24%),
+        url('assets/blog_elderly.png');
+    background-position: center, top right, center;
+    background-size: cover, auto, cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+
+.services-page-header .btn-secondary {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.45);
+    background-color: transparent;
+}
+
+.services-page-header .btn-secondary:hover {
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--white);
+}
+
+.services-page .services-faq-header {
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 48px;
+}
+
+@media (max-width: 1024px) {
+    .page-header.services-page-header {
+        min-height: 640px;
+        padding: 180px 0 140px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header.services-page-header {
+        min-height: 580px;
+        padding: 150px 0 120px;
     }
 }

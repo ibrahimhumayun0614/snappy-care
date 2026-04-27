@@ -1,8 +1,3 @@
-// ===== SCRIPT INITIALIZATION DEBUG =====
-console.log('🚀 Script.js loaded and executing');
-console.log('📄 Document ready state:', document.readyState);
-console.log('📄 Window location:', window.location.href);
-
 // ===== Smooth Sticky Header (requestAnimationFrame) =====
 (function() {
     var header = document.querySelector('.header');
@@ -90,7 +85,7 @@ console.log('📄 Window location:', window.location.href);
     var toggle = document.querySelector('.mobile-menu-toggle');
     var nav = document.querySelector('.nav');
     var dropdowns = document.querySelectorAll('.nav-item.dropdown');
-
+    
     if (!toggle || !nav) return;
 
     var isOpen = false;
@@ -99,10 +94,10 @@ console.log('📄 Window location:', window.location.href);
     function closeAllDropdowns() {
         dropdowns.forEach(function(dropdown) {
             dropdown.classList.remove('dropdown-active');
-            var link = dropdown.querySelector('.nav-link');
             var icon = dropdown.querySelector('.dropdown-icon');
-            if (link) link.setAttribute('aria-expanded', 'false');
-            if (icon) icon.style.transform = '';
+            if (icon) {
+                icon.style.transform = '';
+            }
         });
     }
 
@@ -127,47 +122,43 @@ console.log('📄 Window location:', window.location.href);
         }
     }
 
+    // Toggle mobile menu
     toggle.addEventListener('click', function(e) {
         e.stopPropagation();
         toggleMenu();
     });
 
+    // Handle dropdowns on mobile
     dropdowns.forEach(function(dropdown) {
         var link = dropdown.querySelector('.nav-link');
         if (!link) return;
 
-        link.setAttribute('aria-haspopup', 'true');
-        link.setAttribute('aria-expanded', 'false');
-
         link.addEventListener('click', function(e) {
-            if (!mobileQuery.matches) return;
+            if (mobileQuery.matches) {
+                e.preventDefault();
+                e.stopPropagation();
 
-            e.preventDefault();
-            e.stopPropagation();
+                // Close other dropdowns
+                dropdowns.forEach(function(item) {
+                    if (item !== dropdown) {
+                        item.classList.remove('dropdown-active');
+                        var itemIcon = item.querySelector('.dropdown-icon');
+                        if (itemIcon) itemIcon.style.transform = '';
+                    }
+                });
 
-            dropdowns.forEach(function(item) {
-                if (item !== dropdown) {
-                    item.classList.remove('dropdown-active');
-                    var itemLink = item.querySelector('.nav-link');
-                    var itemIcon = item.querySelector('.dropdown-icon');
-                    if (itemLink) itemLink.setAttribute('aria-expanded', 'false');
-                    if (itemIcon) itemIcon.style.transform = '';
+                // Toggle current
+                dropdown.classList.toggle('dropdown-active');
+                var icon = dropdown.querySelector('.dropdown-icon');
+                if (icon) {
+                    icon.style.transform = dropdown.classList.contains('dropdown-active') ? 'rotate(180deg)' : '';
                 }
-            });
-
-            dropdown.classList.toggle('dropdown-active');
-            var isActive = dropdown.classList.contains('dropdown-active');
-            link.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-
-            var icon = dropdown.querySelector('.dropdown-icon');
-            if (icon) {
-                icon.style.transform = isActive ? 'rotate(180deg)' : '';
             }
         });
     });
 
-    // Important fix: exclude dropdown parent links from auto-close.
-    var allLinks = nav.querySelectorAll('.nav-item:not(.dropdown) > .nav-link, .dropdown-link, .nav-cta .btn-primary');
+    // Close menu when clicking non-dropdown links or dropdown items
+    var allLinks = document.querySelectorAll('.nav-link:not(.dropdown > .nav-link), .dropdown-link, .btn-primary');
     allLinks.forEach(function(link) {
         link.addEventListener('click', function() {
             if (mobileQuery.matches && isOpen) {
@@ -176,224 +167,19 @@ console.log('📄 Window location:', window.location.href);
         });
     });
 
+    // Close on outside click
     document.addEventListener('click', function(e) {
         if (isOpen && !nav.contains(e.target) && !toggle.contains(e.target)) {
             toggleMenu(true);
         }
     });
 
+    // Handle resize
     window.addEventListener('resize', function() {
         if (!mobileQuery.matches && isOpen) {
             toggleMenu(true);
         }
     }, { passive: true });
-})();
-
-// ===== Smooth Dropdown Toggle (Mobile) =====
-(function() {
-    // Disabled legacy debug handler. A stable mobile handler is defined below.
-    return;
-
-    console.log('� [DROPDOWN] Module initializing...');
-    
-    // First, let's check if DOM is ready
-    if (document.readyState === 'loading') {
-        console.warn('⚠️ [DROPDOWN] DOM still loading, waiting for it to finish...');
-        document.addEventListener('DOMContentLoaded', arguments.callee);
-        return;
-    }
-    
-    // Check nav element
-    var nav = document.querySelector('.nav');
-    console.log('🔴 [DROPDOWN] Nav element:', nav ? 'FOUND ✅' : 'NOT FOUND ❌');
-    if (nav) {
-        console.log('  - Nav classes:', nav.className);
-        console.log('  - Nav HTML:', nav.outerHTML.substring(0, 100) + '...');
-    }
-    
-    if (!nav) {
-        console.error('❌ [DROPDOWN] FATAL: Nav element not found!');
-        return;
-    }
-    
-    var mobileNavQuery = window.matchMedia('(max-width: 1024px)');
-    console.log('🔴 [DROPDOWN] Mobile viewport (≤1024px):', mobileNavQuery.matches ? 'YES ✅' : 'NO');
-    
-    // Check for dropdowns
-    var allDropdowns = nav.querySelectorAll('.nav-item.dropdown');
-    console.log('🔴 [DROPDOWN] Dropdowns found:', allDropdowns.length);
-    if (allDropdowns.length === 0) {
-        console.error('❌ [DROPDOWN] FATAL: No dropdowns found in nav!');
-        // Try to find nav-items at all
-        var navItems = nav.querySelectorAll('.nav-item');
-        console.log('    But found nav-items:', navItems.length);
-        navItems.forEach(function(item, i) {
-            console.log('      Item ' + i + ':', item.className, item.innerHTML.substring(0, 50));
-        });
-        return;
-    }
-    
-    // List all dropdowns
-    allDropdowns.forEach(function(d, i) {
-        var title = d.querySelector('.nav-link') ? d.querySelector('.nav-link').textContent.trim() : 'Unknown';
-        console.log('  [' + i + '] ' + title);
-    });
-    
-    // Add click event listener
-    console.log('🔴 [DROPDOWN] Adding click event listener to nav...');
-    nav.addEventListener('click', function(e) {
-        console.log('🔵 [DROPDOWN] Click event fired');
-        console.log('  - Target:', e.target.tagName, e.target.className);
-        console.log('  - Mobile:', mobileNavQuery.matches ? 'YES' : 'NO');
-        
-        var link = e.target.closest('.nav-link');
-        console.log('  - Found .nav-link via closest():', !!link);
-        
-        if (!link) {
-            console.log('  ❌ Not a nav-link, returning');
-            return;
-        }
-        
-        var dropdown = link.closest('.nav-item.dropdown');
-        console.log('  - Found .nav-item.dropdown via closest():', !!dropdown);
-        
-        if (!dropdown) {
-            console.log('  ❌ Not inside a dropdown, returning');
-            return;
-        }
-        
-        if (!mobileNavQuery.matches) {
-            console.log('  ⚠️ Not on mobile view (viewport > 1024px), ignoring');
-            return;
-        }
-        
-        console.log('✅ [DROPDOWN] Processing mobile dropdown toggle');
-        e.preventDefault();
-        
-        var linkText = link.textContent.trim();
-        var isActive = dropdown.classList.contains('dropdown-active');
-        console.log('  - Dropdown:', linkText);
-        console.log('  - Currently active:', isActive);
-        
-        // Close other dropdowns
-        allDropdowns.forEach(function(d) {
-            if (d !== dropdown && d.classList.contains('dropdown-active')) {
-                console.log('  - Closing other dropdown');
-                d.classList.remove('dropdown-active');
-                var dLink = d.querySelector('.nav-link');
-                var dIcon = d.querySelector('.dropdown-icon');
-                if (dLink) dLink.setAttribute('aria-expanded', 'false');
-                if (dIcon) dIcon.style.transform = '';
-            }
-        });
-        
-        // Toggle current
-        dropdown.classList.toggle('dropdown-active');
-        var newState = dropdown.classList.contains('dropdown-active');
-        console.log('  - New state:', newState ? 'OPEN' : 'CLOSED');
-        
-        link.setAttribute('aria-expanded', newState ? 'true' : 'false');
-        var icon = dropdown.querySelector('.dropdown-icon');
-        if (icon) icon.style.transform = newState ? 'rotate(180deg)' : '';
-        
-        console.log('✅ [DROPDOWN] Toggle complete');
-    }, false);
-    
-    // Initialize aria
-    console.log('🔴 [DROPDOWN] Initializing aria attributes...');
-    var dropdownLinks = document.querySelectorAll('.nav-item.dropdown .nav-link');
-    console.log('  - Found ' + dropdownLinks.length + ' dropdown links');
-    
-    dropdownLinks.forEach(function(link) {
-        link.setAttribute('aria-haspopup', 'true');
-        link.setAttribute('aria-expanded', 'false');
-    });
-    
-    console.log('✅ [DROPDOWN] Module initialization complete');
-})();
-
-// ===== Stable Dropdown Toggle (Mobile) =====
-(function() {
-    // Disabled in favor of unified Navigation Logic block above.
-    return;
-
-    var nav = document.querySelector('.nav');
-    if (!nav) return;
-
-    var mobileNavQuery = window.matchMedia('(max-width: 1024px)');
-    var dropdowns = nav.querySelectorAll('.nav-item.dropdown');
-    if (!dropdowns.length) return;
-
-    function setDropdownState(dropdown, isOpen) {
-        dropdown.classList.toggle('dropdown-active', isOpen);
-
-        var link = dropdown.querySelector('.nav-link');
-        if (link) {
-            link.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        }
-
-        var menu = dropdown.querySelector('.dropdown-menu');
-        if (menu && mobileNavQuery.matches) {
-            menu.style.display = isOpen ? 'block' : 'none';
-        } else if (menu) {
-            menu.style.display = '';
-        }
-
-        var icon = dropdown.querySelector('.dropdown-icon');
-        if (icon) {
-            icon.style.transform = isOpen ? 'rotate(180deg)' : '';
-        }
-    }
-
-    dropdowns.forEach(function(dropdown) {
-        var link = dropdown.querySelector('.nav-link');
-        if (!link) return;
-        link.setAttribute('aria-haspopup', 'true');
-        link.setAttribute('aria-expanded', 'false');
-        link.setAttribute('role', 'button');
-        setDropdownState(dropdown, false);
-    });
-
-    function handleDropdownToggle(e) {
-        if (!mobileNavQuery.matches) return;
-
-        var link = e.target.closest('.nav-item.dropdown > .nav-link');
-        if (!link || !nav.contains(link)) return;
-
-        var dropdown = link.closest('.nav-item.dropdown');
-        if (!dropdown) return;
-
-        e.preventDefault();
-        e.stopPropagation();
-        var shouldOpen = !dropdown.classList.contains('dropdown-active');
-
-        dropdowns.forEach(function(otherDropdown) {
-            if (otherDropdown !== dropdown) {
-                setDropdownState(otherDropdown, false);
-            }
-        });
-
-        setDropdownState(dropdown, shouldOpen);
-    }
-
-    function resetDesktopDropdownStyles() {
-        if (mobileNavQuery.matches) return;
-        dropdowns.forEach(function(dropdown) {
-            var menu = dropdown.querySelector('.dropdown-menu');
-            var icon = dropdown.querySelector('.dropdown-icon');
-            if (menu) menu.style.display = '';
-            if (icon) icon.style.transform = '';
-        });
-    }
-
-    if (typeof mobileNavQuery.addEventListener === 'function') {
-        mobileNavQuery.addEventListener('change', resetDesktopDropdownStyles);
-    } else if (typeof mobileNavQuery.addListener === 'function') {
-        mobileNavQuery.addListener(resetDesktopDropdownStyles);
-    }
-
-    nav.addEventListener('touchstart', handleDropdownToggle, { passive: false, capture: true });
-    nav.addEventListener('click', handleDropdownToggle, true);
 })();
 
 // ===== Care Slider =====
@@ -573,21 +359,30 @@ console.log('📄 Window location:', window.location.href);
 // ===== FAQ Accordion Logic =====
 (function() {
     var faqItems = document.querySelectorAll('.faq-item');
-    
+
+    function syncFaqIcon(item, isActive) {
+        var icon = item.querySelector('.faq-icon');
+        if (!icon) return;
+        icon.textContent = isActive ? '-' : '+';
+    }
+
     faqItems.forEach(function(item) {
         var question = item.querySelector('.faq-question');
-        
+        syncFaqIcon(item, item.classList.contains('active'));
+
         question.addEventListener('click', function() {
             var isActive = item.classList.contains('active');
-            
+
             // Close other items
             faqItems.forEach(function(otherItem) {
                 otherItem.classList.remove('active');
+                syncFaqIcon(otherItem, false);
             });
-            
+
             // Toggle current item
             if (!isActive) {
                 item.classList.add('active');
+                syncFaqIcon(item, true);
             }
         });
     });
@@ -987,33 +782,6 @@ console.log('📄 Window location:', window.location.href);
     var hash = window.location.hash ? window.location.hash.substring(1) : '';
     var initial = headings.some(function(heading) { return heading.id === hash; }) ? hash : headings[0].id;
     setActive(initial);
-
-    var tocPanel = tocList.closest('.blog-toc-panel');
-    var mobileTocQuery = window.matchMedia('(max-width: 1180px)');
-    var postEndMarker = document.querySelector('.blog-post-end-marker');
-
-    function updateMobileTocBoundary() {
-        if (!tocPanel) return;
-
-        if (!mobileTocQuery.matches) {
-            tocPanel.classList.remove('is-past-post');
-            return;
-        }
-
-        var tocHeight = tocPanel.offsetHeight || 72;
-        var boundaryRect = (postEndMarker || postContent).getBoundingClientRect();
-        var shouldHide = boundaryRect.top <= window.innerHeight - tocHeight - 8;
-        tocPanel.classList.toggle('is-past-post', shouldHide);
-    }
-
-    updateMobileTocBoundary();
-    window.addEventListener('scroll', updateMobileTocBoundary, { passive: true });
-    window.addEventListener('resize', updateMobileTocBoundary);
-    if (mobileTocQuery.addEventListener) {
-        mobileTocQuery.addEventListener('change', updateMobileTocBoundary);
-    } else if (mobileTocQuery.addListener) {
-        mobileTocQuery.addListener(updateMobileTocBoundary);
-    }
 })();
 
 // ===== Blog Appointment Modal =====
@@ -1124,4 +892,225 @@ console.log('📄 Window location:', window.location.href);
 
         document.body.removeChild(input);
     });
+})();
+
+// ===== Services Carousel =====
+(function() {
+    var carousel = document.querySelector('.service-carousel');
+    var track = carousel && carousel.querySelector('.service-carousel-track');
+    var originalSlides = track ? Array.prototype.slice.call(track.children) : [];
+    var prevBtn = carousel && carousel.querySelector('.service-prev');
+    var nextBtn = carousel && carousel.querySelector('.service-next');
+    var dots = carousel ? Array.prototype.slice.call(carousel.querySelectorAll('.service-carousel-dot')) : [];
+
+    if (!carousel || !track || !originalSlides.length) return;
+
+    var currentIndex = 0;
+    var touchStartX = 0;
+    var touchEndX = 0;
+    var visibleSlides = 3;
+    var isAnimating = false;
+
+    function getVisibleSlides() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1200) return 2;
+        return 3;
+    }
+
+    function getGap() {
+        var styles = window.getComputedStyle(track);
+        return parseFloat(styles.columnGap || styles.gap) || 0;
+    }
+
+    function getAllSlides() {
+        return Array.prototype.slice.call(track.children);
+    }
+
+    function getLogicalIndex() {
+        return ((currentIndex - visibleSlides) % originalSlides.length + originalSlides.length) % originalSlides.length;
+    }
+
+    function updateDots() {
+        var activeIndex = getLogicalIndex();
+        dots.forEach(function(dot, index) {
+            dot.classList.toggle('active', index === activeIndex);
+        });
+    }
+
+    function render(instant) {
+        visibleSlides = getVisibleSlides();
+
+        var slide = getAllSlides()[0];
+        var slideWidth = slide ? slide.offsetWidth : 0;
+        var translateX = currentIndex * (slideWidth + getGap());
+
+        track.style.transition = instant ? 'none' : 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)';
+        track.style.transform = 'translate3d(-' + translateX.toFixed(2) + 'px, 0, 0)';
+        updateDots();
+    }
+
+    function buildLoop() {
+        var logicalIndex = track.querySelector('[data-clone="true"]') ? getLogicalIndex() : 0;
+
+        track.querySelectorAll('[data-clone="true"]').forEach(function(slide) {
+            slide.remove();
+        });
+
+        var prependFragment = document.createDocumentFragment();
+        originalSlides.slice(-visibleSlides).forEach(function(slide) {
+            var clone = slide.cloneNode(true);
+            clone.setAttribute('data-clone', 'true');
+            prependFragment.appendChild(clone);
+        });
+        track.insertBefore(prependFragment, track.firstChild);
+
+        var appendFragment = document.createDocumentFragment();
+        originalSlides.slice(0, visibleSlides).forEach(function(slide) {
+            var clone = slide.cloneNode(true);
+            clone.setAttribute('data-clone', 'true');
+            appendFragment.appendChild(clone);
+        });
+        track.appendChild(appendFragment);
+
+        currentIndex = visibleSlides + logicalIndex;
+        render(true);
+    }
+
+    function goTo(index) {
+        if (isAnimating) return;
+        isAnimating = true;
+        currentIndex = index;
+        render(false);
+    }
+
+    function next() {
+        goTo(currentIndex + 1);
+    }
+
+    function prev() {
+        goTo(currentIndex - 1);
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            next();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            prev();
+        });
+    }
+
+    dots.forEach(function(dot, index) {
+        dot.addEventListener('click', function() {
+            goTo(visibleSlides + index);
+        });
+    });
+
+    track.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var delta = touchEndX - touchStartX;
+
+        if (Math.abs(delta) < 40) return;
+        if (delta < 0) {
+            next();
+        } else {
+            prev();
+        }
+    }, { passive: true });
+
+    track.addEventListener('transitionend', function() {
+        if (currentIndex >= originalSlides.length + visibleSlides) {
+            currentIndex -= originalSlides.length;
+            render(true);
+        } else if (currentIndex < visibleSlides) {
+            currentIndex += originalSlides.length;
+            render(true);
+        }
+
+        track.offsetHeight;
+        isAnimating = false;
+    });
+
+    window.addEventListener('resize', function() {
+        visibleSlides = getVisibleSlides();
+        buildLoop();
+        isAnimating = false;
+    }, { passive: true });
+
+    visibleSlides = getVisibleSlides();
+    buildLoop();
+})();
+
+// ===== Benefits Scroll Cards =====
+(function() {
+    var section = document.querySelector('.benefits-scroll-layout');
+    if (!section) return;
+
+    var cards = Array.prototype.slice.call(section.querySelectorAll('.benefits-scroll-card'));
+    if (!cards.length) return;
+
+    function activateCard(card) {
+        cards.forEach(function(entry) {
+            entry.classList.toggle('is-active', entry === card);
+        });
+    }
+
+    activateCard(cards[0]);
+
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+            var visibleEntries = entries
+                .filter(function(entry) { return entry.isIntersecting; })
+                .sort(function(a, b) { return b.intersectionRatio - a.intersectionRatio; });
+
+            if (visibleEntries.length) {
+                activateCard(visibleEntries[0].target);
+            }
+        }, {
+            threshold: [0.25, 0.45, 0.65, 0.85],
+            rootMargin: "-18% 0px -28% 0px"
+        });
+
+        cards.forEach(function(card) {
+            observer.observe(card);
+        });
+    }
+})();
+
+// ===== Importance Cards Reveal =====
+(function() {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.importance-card'));
+    if (!cards.length) return;
+
+    function revealCard(card) {
+        card.classList.add('is-visible');
+    }
+
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting) return;
+                revealCard(entry.target);
+                observer.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.35,
+            rootMargin: "0px 0px -10% 0px"
+        });
+
+        cards.forEach(function(card) {
+            observer.observe(card);
+        });
+    } else {
+        cards.forEach(revealCard);
+    }
 })();
