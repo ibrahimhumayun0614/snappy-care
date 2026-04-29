@@ -424,9 +424,6 @@
 
 // ===== Custom Select Dropdown Logic =====
 (function() {
-    var customSelects = document.querySelectorAll('.custom-select');
-    if (!customSelects.length) return;
-
     var subServiceData = {
         'autism': ['Autism Caregiver', 'Special Needs Child Care', 'ASD/AHSD Care (3 Months)', 'ASD/AHSD Care (1 Year Contract)'],
         'elderly': ['Post-Surgery Care', 'General Care Help', 'Professional Caregivers', 'Wound Care'],
@@ -440,10 +437,15 @@
     };
 
     function initSelect(select) {
+        if (select.dataset.customSelectInitialized === 'true') return;
+
         var trigger = select.querySelector('.custom-select-trigger');
         var optionsContainer = select.querySelector('.custom-options');
+        if (!trigger || !optionsContainer) return;
+
         var options = optionsContainer.querySelectorAll('.custom-option');
         var hiddenInput = select.parentElement.querySelector('input[type="hidden"]');
+        select.dataset.customSelectInitialized = 'true';
 
         trigger.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -541,9 +543,17 @@
         }
     }
 
-    customSelects.forEach(function(select) {
-        initSelect(select);
-    });
+    function initCustomSelects(root) {
+        var scope = root || document;
+        var customSelects = scope.querySelectorAll('.custom-select');
+
+        customSelects.forEach(function(select) {
+            initSelect(select);
+        });
+    }
+
+    window.SnappyCareInitCustomSelects = initCustomSelects;
+    initCustomSelects(document);
 
     document.addEventListener('click', function() {
         document.querySelectorAll('.custom-select').forEach(function(select) {
@@ -784,13 +794,103 @@
     setActive(initial);
 })();
 
-// ===== Blog Appointment Modal =====
+// ===== Appointment Modal =====
 (function() {
     var modal = document.getElementById('appointmentModal');
-    var triggers = document.querySelectorAll('.appointment-modal-trigger');
+    var triggerSelector = '.appointment-modal-trigger, .header .nav-cta .btn-primary, .header .header-cta .btn-primary';
+    var triggers = document.querySelectorAll(triggerSelector);
     var closeButton = document.getElementById('appointmentModalClose');
     var form = document.getElementById('appointment-form');
-    if (!modal || !triggers.length || !closeButton) return;
+    if (!triggers.length) return;
+
+    function createAppointmentModal() {
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            '<div class="modal-overlay appointment-modal" id="appointmentModal" aria-hidden="true">',
+            '    <div class="modal-container appointment-modal-container" role="dialog" aria-modal="true" aria-labelledby="appointmentModalTitle">',
+            '        <button type="button" class="modal-close" id="appointmentModalClose" aria-label="Close appointment form">&times;</button>',
+            '        <div class="modal-header appointment-modal-header">',
+            '            <h2 id="appointmentModalTitle">Book an <span>Appointment</span></h2>',
+            '            <p>Fill out the form below and our team will get back to you within 24 hours.</p>',
+            '        </div>',
+            '        <form id="appointment-form" class="contact-form appointment-form">',
+            '            <div class="form-row">',
+            '                <div class="form-group">',
+            '                    <label for="appointment-name">Full Name</label>',
+            '                    <input type="text" id="appointment-name" name="name" placeholder="Enter your name" required>',
+            '                </div>',
+            '                <div class="form-group">',
+            '                    <label for="appointment-email">Email Address</label>',
+            '                    <input type="email" id="appointment-email" name="email" placeholder="Enter your email" required>',
+            '                </div>',
+            '            </div>',
+            '            <div class="form-row">',
+            '                <div class="form-group">',
+            '                    <label for="appointment-phone">Phone Number</label>',
+            '                    <input type="tel" id="appointment-phone" name="phone" placeholder="+971 -- --- ----" required>',
+            '                </div>',
+            '                <div class="form-group custom-select-wrapper">',
+            '                    <label for="appointment-service">Service Interested In</label>',
+            '                    <div class="custom-select" id="appointment-service-select">',
+            '                        <div class="custom-select-trigger">',
+            '                            <span>Select a service</span>',
+            '                            <div class="arrow"><i class="fa-solid fa-chevron-down"></i></div>',
+            '                        </div>',
+            '                        <div class="custom-options">',
+            '                            <span class="custom-option" data-value="autism">Autism Care</span>',
+            '                            <span class="custom-option" data-value="elderly">Elderly Care</span>',
+            '                            <span class="custom-option" data-value="pregnancy">Pregnancy Care</span>',
+            '                            <span class="custom-option" data-value="physio">Physiotherapy Care</span>',
+            '                            <span class="custom-option" data-value="baby">Baby Care</span>',
+            '                            <span class="custom-option" data-value="doctor">Doctor on Call</span>',
+            '                            <span class="custom-option" data-value="nursing">Nursing Care</span>',
+            '                            <span class="custom-option" data-value="iv">IV Therapy</span>',
+            '                            <span class="custom-option" data-value="lab">Lab Test</span>',
+            '                        </div>',
+            '                    </div>',
+            '                    <input type="hidden" id="appointment-service" name="service" required>',
+            '                </div>',
+            '            </div>',
+            '            <div id="appointment-sub-service-row" data-sub-service-row style="display: none; width: 100%; margin-bottom: 24px;">',
+            '                <div class="form-group custom-select-wrapper" style="width: 100%;">',
+            '                    <label for="appointment-sub-service">Specific Requirement</label>',
+            '                    <div class="custom-select" id="appointment-sub-service-select" data-sub-service-select>',
+            '                        <div class="custom-select-trigger">',
+            '                            <span>Select an option</span>',
+            '                            <div class="arrow"><i class="fa-solid fa-chevron-down"></i></div>',
+            '                        </div>',
+            '                        <div class="custom-options" id="appointment-sub-service-options" data-sub-service-options></div>',
+            '                    </div>',
+            '                    <input type="hidden" id="appointment-sub-service" name="sub-service">',
+            '                </div>',
+            '            </div>',
+            '            <div class="form-group">',
+            '                <label for="appointment-message">Your Message</label>',
+            '                <textarea id="appointment-message" name="message" rows="5" placeholder="How can we help you?" required></textarea>',
+            '            </div>',
+            '            <button type="submit" class="btn-primary submit-btn">',
+            '                <span>Send Message</span>',
+            '                <i class="fa-solid fa-paper-plane"></i>',
+            '            </button>',
+            '        </form>',
+            '    </div>',
+            '</div>'
+        ].join('');
+
+        document.body.appendChild(wrapper.firstElementChild);
+        return document.getElementById('appointmentModal');
+    }
+
+    if (!modal) {
+        modal = createAppointmentModal();
+        closeButton = document.getElementById('appointmentModalClose');
+        form = document.getElementById('appointment-form');
+        if (window.SnappyCareInitCustomSelects) {
+            window.SnappyCareInitCustomSelects(modal);
+        }
+    }
+
+    if (!modal || !closeButton) return;
 
     function openModal() {
         modal.classList.add('active');
@@ -807,7 +907,11 @@
     }
 
     triggers.forEach(function(trigger) {
-        trigger.addEventListener('click', openModal);
+        trigger.classList.add('appointment-modal-trigger');
+        trigger.addEventListener('click', function(event) {
+            event.preventDefault();
+            openModal();
+        });
     });
 
     closeButton.addEventListener('click', closeModal);

@@ -4358,8 +4358,13 @@ body {
 }
 
 .openings-header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 60px;
+}
+
+.openings-header .section-description {
+    margin-left: 0;
+    margin-right: auto;
 }
 
 .positions-list {
